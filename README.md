@@ -1,6 +1,6 @@
 ## shuffle
 
-Simlulate "perfect" interleaved shuffling of a standard deck of playing cards that has
+Simulate "perfect" interleaved shuffling of a standard deck of playing cards that has
 an initial state of being fully unshuffled: 2 through Ace in order for each of the suits.
 This is to demonstrate that standard interleaved shuffling alone does a *very* poor job
 of randomizing a deck of cards. In fact, it is not at all random.
