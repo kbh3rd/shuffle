@@ -8,7 +8,7 @@ of randomizing a deck of cards. In fact, it is not at all random.
 The Python script shuffle.py is meant to be run on a terminal or in a terminal window that
 is color-capable. It uses the TERM environment variable to identify the type of display and
 defaults to "xterm-256color". Or use the ```--bw``` flag to eschew color if running with
-with a dark blackground. It also relies on the terminal being Unicode-capable in order
+a dark blackground. It also relies on the terminal being Unicode-capable in order
 to show the suit characters: ♥ ♦ ♣ ♠
 
 ### Example
