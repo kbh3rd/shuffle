@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Perform 'perfect' interleave shuffles of a standard deck of cards.
     What do the hands look like?
-    $Revision: 1.4 $    $Locker:  $
+    $Revision: 1.5 $    $Locker:  $
 """
 
 from terminalcolors import TerminalColors
@@ -80,71 +80,40 @@ class card :
             raise ValueError
 
     @classmethod
-    def compare_suit(cls, card1, card2, mode) :
-        val1 = cls.suit_value[card1.suit] + cls.face_value[card1.face]
-        val2 = cls.suit_value[card2.suit] + cls.face_value[card2.face]
-        if mode == "gt" :
+    def compare_cards(cls, card1, operator, card2) :
+        val1 = cls.face_value[card1.face]
+        val2 = cls.face_value[card2.face]
+        if cls.compare_mode == cls.by_suit :
+            val1 += cls.suit_value[card1.suit]
+            val2 += cls.suit_value[card2.suit]
+
+        if operator == "gt" :
             return val1 > val2
-        elif mode == "ge" :
+        elif operator == "ge" :
             return val1 >= val2
-        elif mode == "lt" :
+        elif operator == "lt" :
             return val1 < val2
-        elif mode == "le" :
+        elif operator == "le" :
             return val1 <= val2
-        elif mode == "eq" :
+        elif operator == "eq" :
             return val1 == val2
-        elif mode == "ne" :
+        elif operator == "ne" :
             return val1 != val2
         else :
             raise ValueError
 
-    @classmethod
-    def compare_face(cls, card1, card2, mode): 
-        if mode == "gt" :
-            return cls.face_value[card1.face] > cls.face_value[card2.face]
-        elif mode == "ge" :
-            return cls.face_value[card1.face] >= cls.face_value[card2.face]
-        elif mode == "lt" :
-            return cls.face_value[card1.face] < cls.face_value[card2.face]
-        elif mode == "le" :
-            return cls.face_value[card1.face] <= cls.face_value[card2.face]
-        elif mode == "eq" :
-            return cls.face_value[card1.face] == cls.face_value[card2.face]
-        elif mode == "ne" :
-            return cls.face_value[card1.face] != cls.face_value[card2.face]
-        else :
-            raise ValueError
-
     def __gt__(self, other) :
-        if card.compare_mode == card.by_suit and self.suit != other.suit :
-            return card.compare_suit(self, other, "gt")
-        else :
-            return card.compare_face(self, other, "gt")
+        return card.compare_cards(self, "gt", other)
     def __ge__(self, other) :
-        if card.compare_mode == card.by_suit and self.suit != other.suit :
-            return card.compare_suit(self, other, "ge")
-        else :
-            return card.compare_face(self, other, "ge")
+        return card.compare_cards(self, "ge", other)
     def __lt__(self, other) :
-        if card.compare_mode == card.by_suit and self.suit != other.suit :
-            return card.compare_suit(self, other, "lt")
-        else :
-            return card.compare_face(self, other, "lt")
+        return card.compare_cards(self, "lt", other)
     def __le__(self, other) :
-        if card.compare_mode == card.by_suit and self.suit != other.suit :
-            return card.compare_suit(self, other, "le")
-        else :
-            return card.compare_face(self, other, "le")
+        return card.compare_cards(self, "le", other)
     def __eq__(self, other) :
-        if card.compare_mode == card.by_suit and self.suit != other.suit :
-            return card.compare_suit(self, other, "eq")
-        else :
-            return card.compare_face(self, other, "eq")
+        return card.compare_cards(self, "eq", other)
     def __ne__(self, other) :
-        if card.compare_mode == card.by_suit and self.suit != other.suit :
-            return card.compare_suit(self, other, "ne")
-        else :
-            return card.compare_face(self, other, "ne")
+        return card.compare_cards(self, "ne", other)
 
 def shuffle_halves(lst):
     half_len = len(lst) // 2
