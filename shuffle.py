@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Perform 'perfect' interleave shuffles of a standard deck of cards.
     What do the hands look like?
-    $Revision: 1.3 $    $Locker:  $
+    $Revision: 1.4 $    $Locker:  $
 """
 
 from terminalcolors import TerminalColors
@@ -21,6 +21,7 @@ def suit_str(suit) :
         return "?"
 
 class card :
+    use_color = True # use color coding in string representation
     by_face_value = 1 # compare by face value setting
     by_suit = 2  # compare by suit then face value setting
     compare_mode = by_face_value # 1=by value; 2=by suit then value
@@ -62,7 +63,14 @@ class card :
         self.face = str(face_value)
 
     def __str__(self) :
-        return f"{self.color}{self.face}{self.suit}{tc.reset()}"
+        if card.use_color :
+            return f"{self.color}{self.face}{self.suit}{tc.reset()}"
+        else :
+            return f"{self.face}{self.suit}"
+
+    @classmethod
+    def set_nocolor(cls) :
+        cls.use_color = False ;
 
     @classmethod
     def set_compareby(cls, setting) :
@@ -165,12 +173,15 @@ parser.add_argument('--shuffles', '-n', type=int, default=1, help="Number of shu
 parser.add_argument('--hands', '-p', type=int, default=4, help="Number of hands to deal (# players)")
 parser.add_argument('--cards', '-c', type=int, default=5, help="Number of cards per hand")
 parser.add_argument('--suit', '-S', action='store_true', help="Sort results by suit first")
+parser.add_argument('--bw', '-b', action='store_true', help="Black and white, i.e., native screen color only")
 parser.add_argument('--verbose', '-v', action='store_true', help="Verbose; show the whole deck")
 args=parser.parse_args()
 
 hands = int(args.hands)
 cardcount = int(args.cards)
 shuffles = int(args.shuffles)
+if args.bw :
+    card.set_nocolor()
 
 # create the deck
 deck = list()
