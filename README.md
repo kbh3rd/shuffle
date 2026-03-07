@@ -6,12 +6,16 @@ in order for each of the suits.  This is to demonstrate that standard
 interleaved shuffling alone does a *very* poor job of randomizing a deck
 of cards. In fact, it is not at all random.
 
-The Python script shuffle.py is meant to be run on a terminal or in a
-terminal window that is color-capable. It uses ```terminalcolors.py```
-which uses the TERM environment variable to identify the type of display
-and defaults to "xterm-256color". Or use the ```--bw``` flag to eschew
-color if running with a dark blackground. It also relies on the terminal
-being Unicode-capable in order to show the suit characters: ♥ ♦ ♣ ♠
+The Python script shuffle.py can be run on a terminal or in a terminal
+window that is color-capable. If ```--color``` is in the arguement
+list, it uses the ```terminalcolors.py``` module which uses the TERM
+environment variable to identify the type of display and defaults
+to "xterm-256color". The results are much more readable if you can use
+color, but you may not want color if running with a dark
+blackground.
+
+It relies on the terminal being Unicode-capable in order to show the
+suit characters: ♥ ♦ ♣ ♠
 
 ### Example
 
