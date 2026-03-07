@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Perform 'perfect' interleave shuffles of a standard deck of cards.
     What do the hands look like?
-    $Revision: 1.7 $    $Locker:  $
+    $Revision: 1.8 $    $Locker:  $
 """
 
 from terminalcolors import TerminalColors
@@ -200,6 +200,6 @@ else :
 print (f"\n{hands} hands of {cardcount} cards after {shuffles} interleave shuffle{'s' if shuffles > 1 else ''}:\n")
 for hand in range(hands) :
     deal[hand] = sorted(deal[hand])
-    for count in range (cardcount) :
-        print (f"{deal[hand][count]}", end=" ")
+    for crd in deal[hand] :
+        print (crd, end=" ")
     print ()
