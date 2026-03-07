@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Perform 'perfect' interleave shuffles of a standard deck of cards.
     What do the hands look like?
-    $Revision: 1.8 $    $Locker:  $
+    $Revision: 1.9 $    $Locker:  $
 """
 
 from terminalcolors import TerminalColors
@@ -11,7 +11,7 @@ tc = TerminalColors()
 class card :
     """ One card. A deck is a list of these objects.
     """
-    use_color = False # Set True with --color option
+    use_color = 0 # --color set 1; --red set 2; none set 0
     by_face_value = 1 # compare by face value setting
     by_suit = 2  # compare by suit then face value setting
     compare_mode = by_face_value # 1=by value; 2=by suit then value
@@ -58,15 +58,20 @@ class card :
 
     def __str__(self) :
         """ class variable determines if color is used or not """
-        if card.use_color :
+        if card.use_color == 1 :
+            return f"{self.color}{self.face}{self.suit}{tc.reset()}"
+        elif card.use_color == 2 and (self.suit == "♥" or self.suit == "♦") :
             return f"{self.color}{self.face}{self.suit}{tc.reset()}"
         else :
             return f"{self.face}{self.suit}"
 
     @classmethod
-    def set_usecolor(cls, val:bool) :
-        """ Sets class variable for whether to use color or not in __str__()"""
-        cls.use_color = val ;
+    def set_usecolor(cls, val:int) :
+        """ Sets class variable for whether/how to use color in __str__() """
+        if 0 <= val <= 2 :
+            cls.use_color = val ;
+        else :
+            raise ValueError
 
     @classmethod
     def set_compareby(cls, setting) :
@@ -146,18 +151,20 @@ SUITS = ("hearts", "diamonds", "clubs", "spades")
 
 # Usage
 parser = argparse.ArgumentParser(description='Shuffles a deck of cards and displays the hands')
+mutex = parser.add_mutually_exclusive_group()
 parser.add_argument('--shuffles', '-n', type=int, default=1, help="Number of shuffles to perform")
 parser.add_argument('--hands', '-p', type=int, default=4, help="Number of hands to deal (# players)")
 parser.add_argument('--cards', '-c', type=int, default=5, help="Number of cards per hand")
 parser.add_argument('--suit', '-S', action='store_true', help="Sort results by suit first")
-parser.add_argument('--color', action='store_true', help="Colored output (not good on dark backgrounds")
+mutex.add_argument('--color', action='store_true', help="Colored output (good for light backgrounds)")
+mutex.add_argument('--red', action='store_true', help="Color red cards only; may work with dark backgrounds")
 parser.add_argument('--verbose', '-v', action='store_true', help="Verbose; show the whole deck")
 args=parser.parse_args()
 
 hands = int(args.hands)
 cardcount = int(args.cards)
 shuffles = int(args.shuffles)
-card.set_usecolor(bool(args.color))
+card.set_usecolor(1 if args.color else (2 if args.red else 0) )
 
 
 # create the deck -- a list of cards

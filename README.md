@@ -8,11 +8,14 @@ of cards. In fact, it is not at all random.
 
 The Python script shuffle.py can be run on a terminal or in a terminal
 window that is color-capable. If ```--color``` is in the arguement
-list, it uses the ```terminalcolors.py``` module which uses the TERM
+list the suits are shown in red and black; this only works well on light backgrounds
+so that the black suits are visible. if ```--red``` is given, then
+it only colors the red suits, and the black suits are shown in native color;
+this might work well on dark backgrounds with light fonts.
+
+It uses the ```terminalcolors.py``` module which uses the TERM
 environment variable to identify the type of display and defaults
-to "xterm-256color". The results are much more readable if you can use
-color, but you may not want color if running with a dark
-blackground.
+to "xterm-256color".
 
 It relies on the terminal being Unicode-capable in order to show the
 suit characters: ♥ ♦ ♣ ♠
