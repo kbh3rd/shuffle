@@ -1,11 +1,6 @@
 #!/usr/bin/env python3
-""" Perform 'perfect' interleave shuffles of a standard deck of cards.
-    What do the hands look like?
-    $Revision: 1.1 $    $Locker:  $
-"""
 
 from terminalcolors import TerminalColors
-
 
 class Card :
     """ One card. A deck is a list of these objects.
