@@ -6,6 +6,9 @@ in order for each of the suits.  This is to demonstrate that standard
 interleaved shuffling alone does a *very* poor job of randomizing a deck
 of cards. In fact, it is not at all random.
 
+The evaluate module is used to evaluate each dealt hand using 5-card
+stud poker rules.
+
 The Python script shuffle.py can be run on a terminal or in a terminal
 window that is color-capable. If ```--color``` is in the arguement
 list the suits are shown in red and black; this only works well on light backgrounds
