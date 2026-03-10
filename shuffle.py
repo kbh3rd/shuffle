@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Perform 'perfect' interleave shuffles of a standard deck of cards.
     What do the hands look like?
-    $Revision: 1.10 $    $Locker:  $
+    $Revision: 1.11 $    $Locker:  $
 """
 
 from terminalcolors import TerminalColors
@@ -31,7 +31,7 @@ def shuffle_halves(lst):
 import argparse
 from sys import argv, stderr
 
-SUITS = ("hearts", "diamonds", "clubs", "spades")
+SUITS = ("spades", "hearts", "diamonds", "clubs")
 
 # Usage
 parser = argparse.ArgumentParser(description='Shuffles a deck of cards and displays the hands')
