@@ -1,12 +1,12 @@
 ## shuffle
 
-Simulate "perfect" interleaved shuffling of a standard deck of playing
+Simulate "perfect" interleaved riffle shuffling of a standard deck of playing
 cards that has an initial state of being fully unshuffled: 2 through Ace
-in order for each of the suits.  This is to demonstrate that standard
+in order for each of the suits (no Jokers).  This is to demonstrate that standard
 interleaved shuffling alone does a *very* poor job of randomizing a deck
 of cards. In fact, it is not at all random.
 
-The evaluate module is used to evaluate each dealt hand using 5-card
+The ```evaluate.py``` module is used to evaluate each dealt hand using standard
 stud poker rules.
 
 The Python script shuffle.py can be run on a terminal or in a terminal
