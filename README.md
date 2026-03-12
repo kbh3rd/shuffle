@@ -27,7 +27,7 @@ suit characters: ♥ ♦ ♣ ♠
 
 Poker, anyone? 
 
-```bash
+```
 $ ./shuffle.py --shuffles 5 --hands 4 --cards 5
 
 4 hands of 5 cards after 5 interleave shuffles:
