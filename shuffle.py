@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Perform 'perfect' interleave shuffles of a standard deck of cards.
     What do the hands look like?
-    $Revision: 1.11 $    $Locker:  $
+    $Revision: 1.12 $    $Locker:  $
 """
 
 from terminalcolors import TerminalColors
@@ -90,10 +90,13 @@ else :
     Card.set_compareby(Card.by_face_value)
 print (f"\n{hands} hands of {cardcount} cards after {shuffles} interleave shuffle{'s' if shuffles > 1 else ''}:\n")
 high_score = max([evaluate.poker_hand(hnd)[0] for hnd in deal])
+hx = 0 # hand count
 for hand in range(hands) :
+    hx += 1
+    print (f"Hand #{hx}: ", end="")
     deal[hand] = sorted(deal[hand])
     for crd in deal[hand] :
         print (crd, end=" ")
     (score, name, high_card) = evaluate.poker_hand(deal[hand])
-    print (f"  {name}  {'Winner!' if score==high_score else ''}", end="\n\n")
-
+    print (f"  {name}  {'Winner!' if score==high_score else ''}", end="\n")
+print()
