@@ -28,14 +28,14 @@ suit characters: ♥ ♦ ♣ ♠
 Poker, anyone? 
 
 ```bash
-$ ./shuffle.py --shuffles 5 --hands 4 --cards 5 
+$ ./shuffle.py --shuffles 5 --hands 4 --cards 5
 
 4 hands of 5 cards after 5 interleave shuffles:
 
-2♥ 2♦ 2♣ 8♣ 8♠ 
-3♠ 4♥ 10♥ 10♦ 10♣ 
-5♦ 5♣ 5♠ J♠ Q♥ 
-7♥ 7♦ K♦ K♣ K♠ 
+Hand #1: 2♠ 2♥ 2♦ 8♦ 8♣   Full House
+Hand #2: 3♣ 4♠ 10♠ 10♥ 10♦   Three of a Kind
+Hand #3: 5♥ 5♦ 5♣ J♣ Q♠   Three of a Kind
+Hand #4: 7♠ 7♥ K♥ K♦ K♣   Full House  Winner!
 ```
 
 ### Bugs
